@@ -1,6 +1,6 @@
 package com.fudie.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,18 +15,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+public class IngredientsItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	private String name;
+	
 	@ManyToOne
-	private Food food;
+	private IngredientCategory category;
 	
-	private int quantity;
+	@JsonIgnore
+	@ManyToOne
+	private Restaurant restaurant;
 	
-	private long totalPrice;
+	private boolean inStock=true;
 	
-	private List<String> ingredients;
+
 }
